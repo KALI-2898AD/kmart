@@ -70,7 +70,7 @@ export default function LoginPage() {
         </form>
 
         <div style={{ marginTop: '2rem', textAlign: 'center', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-          Don't have an account? <Link href="/register" className="text-gradient" style={{ fontWeight: '600' }}>Sign up</Link>
+          Don&apos;t have an account? <Link href="/register" className="text-gradient" style={{ fontWeight: '600' }}>Sign up</Link>
         </div>
       </div>
     </div>
