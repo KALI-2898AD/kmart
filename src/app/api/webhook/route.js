@@ -3,7 +3,9 @@ import Stripe from 'stripe';
 import dbConnect from '@/lib/mongodb';
 import Order from '@/models/Order';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2023-10-16' })
+  : null;
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
 // IMPORTANT: Raw body is required for Stripe signature verification
@@ -12,6 +14,9 @@ export const runtime = 'nodejs';
 
 export async function POST(req) {
   try {
+    if (!stripe) {
+      return NextResponse.json({ error: 'Stripe is not configured' }, { status: 500 });
+    }
     const body = await req.text(); // Raw body — do NOT use req.json()
     const signature = req.headers.get('stripe-signature');
 

@@ -4,10 +4,15 @@ import dbConnect from '@/lib/mongodb';
 import Order from '@/models/Order';
 import { getAuthUser } from '@/lib/auth';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: '2023-10-16' })
+  : null;
 
 export async function POST(req) {
   try {
+    if (!stripe) {
+      return NextResponse.json({ error: 'Stripe is not configured' }, { status: 500 });
+    }
     await dbConnect();
     const user = getAuthUser(req);
     const { items, shippingAddress } = await req.json();
