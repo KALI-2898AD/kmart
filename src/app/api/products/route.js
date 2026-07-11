@@ -5,9 +5,8 @@ import Product from "@/models/Product";
 export const dynamic = 'force-dynamic';
 
 export async function GET(request) {
-  await dbConnect();
-
   try {
+    await dbConnect();
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search');
     const page = parseInt(searchParams.get('page') || '1');

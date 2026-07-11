@@ -7,10 +7,9 @@ import WishlistButton from '@/components/WishlistButton';
 import ReviewSection from '@/components/ReviewSection';
 
 export default async function ProductPage({ params }) {
-  await dbConnect();
-  
   let product = null;
   try {
+    await dbConnect();
     const doc = await Product.findById(params.id);
     if (doc) {
       product = JSON.parse(JSON.stringify(doc));

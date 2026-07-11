@@ -5,9 +5,8 @@ import { getAuthUser } from "@/lib/auth";
 import { sendOrderConfirmationEmail } from "@/lib/email";
 
 export async function POST(request) {
-  await dbConnect();
-
   try {
+    await dbConnect();
     const body = await request.json();
     const { items, totalAmount, shippingAddress, paymentMethod, otp } = body;
 

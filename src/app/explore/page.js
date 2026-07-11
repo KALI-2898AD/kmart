@@ -9,8 +9,8 @@ export const metadata = {
 };
 
 async function getProducts(search, page) {
-  await dbConnect();
   try {
+    await dbConnect();
     const limit = 20;
     const skip = (page - 1) * limit;
 

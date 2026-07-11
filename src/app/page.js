@@ -6,8 +6,8 @@ import Product from "@/models/Product";
 export const dynamic = 'force-dynamic';
 
 async function getProducts() {
-  await dbConnect();
   try {
+    await dbConnect();
     const products = await Product.find({}).limit(20).lean();
     return JSON.parse(JSON.stringify(products)) || [];
   } catch (err) {
