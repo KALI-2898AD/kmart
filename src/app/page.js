@@ -3,6 +3,8 @@ import ProductCard from "@/components/ProductCard";
 import dbConnect from "@/lib/mongodb";
 import Product from "@/models/Product";
 
+export const dynamic = 'force-dynamic';
+
 async function getProducts() {
   await dbConnect();
   try {
