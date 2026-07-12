@@ -12,7 +12,7 @@ dns.setDefaultResultOrder("ipv4first");
  */
 function getMongoUri() {
   const env = process.env.NODE_ENV ?? "development";
-  const devUri = process.env.MONGODB_URI_DEV ?? "mongodb://127.0.0.1:27017/synra_market";
+  const devUri = process.env.MONGODB_URI_DEV ?? "mongodb://127.0.0.1:27017/synra-market";
   const prodUri = process.env.MONGODB_URI_PROD ?? process.env.MONGODB_URI;
 
   if (env === "production") {
